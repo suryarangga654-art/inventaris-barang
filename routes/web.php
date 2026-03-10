@@ -10,6 +10,7 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangPeminjamController;
 use App\Http\Controllers\BarangPengembalianController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\HomeController;
 
@@ -56,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barangkeluar', BarangKeluarController::class);
     Route::resource('barangpeminjam', BarangPeminjamController::class);
     Route::resource('barangpengembalian', BarangPengembalianController::class);
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 
     // Logout
     Route::post('/logout', function (Request $request) {

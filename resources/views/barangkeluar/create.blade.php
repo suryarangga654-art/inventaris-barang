@@ -113,8 +113,10 @@
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-store"></i></span>
-                              <input
-                                type="text" class="form-control" name="merek" placeholder="merek"/>
+                              <input type="text" class="form-control" name="merek" placeholder="merek"/>
+                              @error('merek')
+                                <small style="color:red;">{{ $message }}</small>
+                              @enderror
                             </div>
                           </div>
                         </div>
@@ -125,6 +127,9 @@
                               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-store"></i></span>
                               <input
                                 type="number" class="form-control" name="jumlah" placeholder="jumlah"/>
+                              @error('jumlah')
+                                <small style="color:red;">{{ $message }}</small>
+                              @enderror
                             </div>
                           </div>
                         </div>
@@ -135,6 +140,9 @@
                               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-store"></i></span>
                               <input
                                 type="text" class="form-control" name="keterangan" placeholder="keterangan"/>
+                              @error('keterangan')
+                                <small style="color:red;">{{ $message }}</small>
+                              @enderror
                             </div>
                           </div>
                         </div>
@@ -145,6 +153,9 @@
                               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-store"></i></span>
                               <input
                                 type="date" class="form-control" name="tanggal_barang_keluar" placeholder="tanggal_barang_keluar"/>
+                              @error('tanggal_barang_keluar')
+                                <small style="color:red;">{{ $message }}</small>
+                              @enderror
                             </div>
                           </div>
                         </div>

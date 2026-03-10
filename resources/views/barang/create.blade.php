@@ -97,6 +97,9 @@
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-box"></i></span>
                               <input type="text" class="form-control" name="name_barang" placeholder="Barang"/>
+                              @error('name_barang')
+                            <small style="color:red;">{{ $message }}</small>
+                            @enderror
                             </div>
                           </div>
                         </div>
@@ -105,8 +108,10 @@
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-store"></i></span>
-                              <input
-                                type="number" class="form-control" name="stock" placeholder="Stock"/>
+                              <input type="number" class="form-control" name="stock" placeholder="Stock"/>
+                              @error('stock')
+                            <small style="color:red;">{{ $message }}</small>
+                            @enderror
                             </div>
                           </div>
                         </div>

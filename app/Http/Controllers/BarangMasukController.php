@@ -24,7 +24,23 @@ class BarangMasukController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-        
+        // $request->validate([
+        //     'id_barang' => 'required|exists:barang,id',
+        //     'merek' => 'required',
+        //     'jumlah' => 'required|integer|min:1',
+        //     'keterangan' => 'nullable',
+        //     'tanggal_barang_masuk' => 'required|date',
+        // ],
+        // [
+        //     'id_barang.required' => 'Barang wajib dipilih',
+        //     'id_barang.exists' => 'Barang tidak valid',
+        //     'merek.required' => 'Merek wajib diisi',
+        //     'jumlah.required' => 'Jumlah wajib diisi',
+        //     'jumlah.integer' => 'Jumlah harus berupa angka',
+        //     'jumlah.min' => 'Jumlah harus minimal 1',
+        //     'tanggal_barang_masuk.required' => 'Tanggal barang masuk wajib diisi',
+        //     'tanggal_barang_masuk.date' => 'Tanggal barang masuk harus berupa tanggal',
+        // ]);
             $masuk = new BarangMasuk();
             $masuk->id_barang = $request->id_barang;
             $masuk->merek = $request->merek;
@@ -66,7 +82,23 @@ class BarangMasukController extends Controller
             // Stok Baru = Stok Sekarang - Jumlah Lama + Jumlah Baru
             $barang->stock = ($barang->stock - $masuk->jumlah) + $request->jumlah;
             $barang->save();
-
+        // $request->validate([
+        //     'id_barang' => 'required|exists:barang,id',
+        //     'merek' => 'required',
+        //     'jumlah' => 'required|integer|min:1',
+        //     'keterangan' => 'nullable',
+        //     'tanggal_barang_masuk' => 'required|date',
+        // ],
+        // [
+        //     'id_barang.required' => 'Barang wajib dipilih',
+        //     'id_barang.exists' => 'Barang tidak valid',
+        //     'merek.required' => 'Merek wajib diisi',
+        //     'jumlah.required' => 'Jumlah wajib diisi',
+        //     'jumlah.integer' => 'Jumlah harus berupa angka',
+        //     'jumlah.min' => 'Jumlah harus minimal 1',
+        //     'tanggal_barang_masuk.required' => 'Tanggal barang masuk wajib diisi',
+        //     'tanggal_barang_masuk.date' => 'Tanggal barang masuk harus berupa tanggal',
+        // ]);
             // Update data transaksi
             $masuk->id_barang = $request->id_barang;
             $masuk->merek = $request->merek;

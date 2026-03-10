@@ -76,7 +76,30 @@ class BarangPeminjamController extends Controller
                 $barang->stock = ($barang->stock + $peminjam->jumlah) - $request->jumlah;
             }
             $barang->save();
-
+            // $request->validate([
+            //     'id_barang' => 'required|exists:barang,id',
+            //     'nama_peminjam' => 'required',
+            //     'merek' => 'required',
+            //     'jumlah' => 'required|integer|min:1',
+            //     'keterangan' => 'nullable',
+            //     'tanggal_peminjaman' => 'required|date',
+            //     'tanggal_pengembalian' => 'required|date|after_or_equal:tanggal_peminjaman',
+            //     'status' => 'required|in:dipinjam,dikembalikan',
+            // ],
+            // [
+            //     'id_barang.required' => 'Barang wajib dipilih',
+            //     'id_barang.exists' => 'Barang tidak valid',
+            //     'nama_peminjam.required' => 'Nama peminjam wajib diisi',
+            //     'merek.required' => 'Merek wajib diisi',
+            //     'jumlah.required' => 'Jumlah wajib diisi',
+            //     'jumlah.integer' => 'Jumlah harus berupa angka',
+            //     'jumlah.min' => 'Jumlah harus minimal 1',
+            //     'tanggal_peminjaman.required' => 'Tanggal peminjaman wajib diisi',
+            //     'tanggal_peminjaman.date' => 'Tanggal peminjaman harus berupa tanggal',
+            //     'tanggal_pengembalian.required' => 'Tanggal pengembalian wajib diisi',
+            //     'tanggal_pengembalian.date' => 'Tanggal pengembalian harus berupa tanggal',
+            //     'status.required' => 'Status wajib dipilih',
+            // ]);
             // UPDATE DATA PEMINJAM
             $peminjam->id_barang = $request->id_barang;
             $peminjam->nama_peminjam = $request->nama_peminjam;

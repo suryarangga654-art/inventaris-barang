@@ -82,9 +82,9 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span>Data Barang</h4>
-             <a href="{{ route('barang.create')}}" class="btn btn-primary my-4">
+             {{-- <a href="{{ route('barang.create')}}" class="btn btn-primary my-4">
                 <i class="bx bx-folder-plus"></i>Tambah Data
-             </a>
+             </a> --}}
              <a href="{{ route('barang.export') }}" class="btn btn-success my-4">
                 <i class="bx bx-file-export"></i> Export to Excel
              </a>

@@ -32,6 +32,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name_barang' => 'required',
+            'stock' => 'required|integer',
+        ],
+        [
+            'name_barang.required' => 'Nama barang wajib diisi',
+            'stock.required' => 'Stock wajib diisi',
+            'stock.integer' => 'Stock harus berupa angka',
+        ]);
         $barang = new Barang;
         $barang->name_barang = $request->name_barang;
         $barang->stock = $request->stock;
@@ -62,6 +71,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name_barang' => 'required',
+            'stock' => 'required|integer',
+        ],
+        [
+            'name_barang.required' => 'Nama barang wajib diisi',
+            'stock.required' => 'Stock wajib diisi',
+            'stock.integer' => 'Stock harus berupa angka',
+        ]);
         $barang = Barang::findOrFail($id);
         $barang->name_barang = $request->name_barang;
         $barang->stock = $request->stock;

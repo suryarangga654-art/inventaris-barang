@@ -106,11 +106,11 @@
                     <div data-i18n="Input groups">Barang peminjam</div>
                   </a>
                 </li>
-                 <li class="menu-item">
-                  <a href="{{ route('barangpengembalian.index')}}" class="menu-link">
-                    <div data-i18n="Input groups">Barang pengembalian</div>
-                  </a>
-                </li>
+                  <li class="menu-item">
+                    <a href="{{ route('laporan.index')}}" class="menu-link">
+                      <div data-i18n="Input groups">Laporan</div>
+                    </a>
+                  </li>
               </ul>
             </li>
            
