@@ -58,7 +58,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barangpeminjam', BarangPeminjamController::class);
     Route::resource('barangpengembalian', BarangPengembalianController::class);
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-
+    Route::get('/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('barang.export');
+Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('barang.export.pdf');
     // Logout
     Route::post('/logout', function (Request $request) {
         Auth::logout();

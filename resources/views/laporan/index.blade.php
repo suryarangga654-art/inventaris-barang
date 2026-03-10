@@ -175,31 +175,40 @@
                 </div>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Tanggal</th>
-                                <th>Barang</th>
-                                <th class="text-end">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($rincian as $index => $item)
-                            <tr>
-                                <td><span class="fw-bold">#{{ $item->id }}</span></td>
-                                <td>{{ \Carbon\Carbon::parse($item->tanggal_barang_keluar)->format('d/m/Y') }}</td>
-                                <td>{{ $item->barang->name_barang }}</td>
-                                <td class="text-end fw-semibold">{{ $item->jumlah }}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center py-5 text-muted">
-                                    Tidak ada data penjualan pada periode ini.
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+    <thead class="table-light">
+        <tr>
+            <th>Order ID</th>
+            <th>Tanggal</th>
+            <th>Barang</th>
+            <th>Status</th> {{-- Kolom Baru --}}
+            <th class="text-end">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($rincian as $item)
+        <tr>
+            <td><span class="fw-bold">#{{ $item->id }}</span></td>
+            <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d/m/Y') }}</td>
+            <td>{{ $item->nama_barang }}</td>
+            <td>
+                {{-- Badge Otomatis Berdasarkan Status --}}
+                @if($item->status == 'Masuk')
+                    <span class="badge bg-label-info">Barang Masuk</span>
+                @elseif($item->status == 'Keluar')
+                    <span class="badge bg-label-danger">Barang Keluar</span>
+                @else
+                    <span class="badge bg-label-warning">Dipinjam</span>
+                @endif
+            </td>
+            <td class="text-end fw-semibold">{{ $item->jumlah }}</td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="5" class="text-center py-5 text-muted">Tidak ada data pada periode ini.</td>
+        </tr>
+        @endforelse
+    </tbody>
+</table>
                 </div>
             </div>
         </div>
