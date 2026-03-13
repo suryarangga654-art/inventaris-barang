@@ -6,6 +6,9 @@ use App\Models\BarangKeluar;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\KeluarExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarangKeluarController extends Controller
 {
@@ -127,4 +130,15 @@ class BarangKeluarController extends Controller
         $keluar = BarangKeluar::with('barang')->findOrFail($id);
         return view('barangkeluar.show', compact('keluar'));
     }
+    public function exportExcel()
+{
+    return Excel::download(new KeluarExport, 'laporan_barang_keluar.xlsx');
+}
+
+public function exportPdf()
+{
+    $keluar = BarangKeluar::with('barang')->get();
+    $pdf = Pdf::loadView('barangkeluar.pdf', compact('keluar'));
+    return $pdf->download('laporan_barang_keluar.pdf');
+}
 }

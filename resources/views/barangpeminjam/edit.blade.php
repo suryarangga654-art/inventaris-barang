@@ -88,6 +88,7 @@
                     <div class="card-header d-flex align-items-center justify-content-between">
                       <h5 class="mb-0">edit Data Peminjam Barang</h5>
                     </div>
+                    
                     <div class="card-body">
                       <form action="{{ route('barangpeminjam.update', $peminjam->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf

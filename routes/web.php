@@ -60,6 +60,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('barang.export');
 Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('barang.export.pdf');
+Route::get('barangkeluar/export/excel', [BarangKeluarController::class, 'exportExcel'])->name('barangkeluar.exportExcel');
+Route::get('barangkeluar/export/pdf', [BarangKeluarController::class, 'exportPdf'])->name('barangkeluar.exportPdf');
+Route::get('barangmasuk/export/excel', [BarangMasukController::class, 'exportExcel'])->name('barangmasuk.exportExcel');
+Route::get('barangmasuk/export/pdf', [BarangMasukController::class, 'exportPdf'])->name('barangmasuk.exportPdf');
+Route::get('barangpeminjam/export/excel', [BarangPeminjamController::class, 'exportExcel'])->name('barangpeminjam.exportExcel');
+Route::get('barangpeminjam/export/pdf', [BarangPeminjamController::class, 'exportPdf'])->name('barangpeminjam.exportPdf');
     // Logout
     Route::post('/logout', function (Request $request) {
         Auth::logout();

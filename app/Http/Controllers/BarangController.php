@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
-use App\Exports\BarangExport;
+use App\Exports\LaporanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf; // Import untuk PDF
 
@@ -100,18 +100,27 @@ class BarangController extends Controller
     /**
      * METHOD EXPORT EXCEL
      */
-    public function export() 
+public function export() 
     {
-        return Excel::download(new BarangExport, 'data_barang.xlsx');
+        // 2. Gunakan LaporanExport di sini
+        return Excel::download(new LaporanExport, 'laporan_barang.xlsx');
     }
 
     /**
      * METHOD EXPORT PDF
      */
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $barang = Barang::all();
-        $pdf = Pdf::loadView('barang.pdf', compact('barang'));
-        return $pdf->download('data_barang.pdf');
+        // Mengambil data barang
+        $barangs = Barang::all();
+        
+        // Data tambahan untuk judul/keterangan di PDF
+        $dari = $request->get('dari', 'Semua Data'); 
+        $sampai = $request->get('sampai', '-');
+
+        // 3. Memuat view laporan.pdf (Pastikan file ini ada di resources/views/laporan/pdf.blade.php)
+        $pdf = Pdf::loadView('laporan.pdf', compact('barangs', 'dari', 'sampai'));
+        
+        return $pdf->download('laporan-barang.pdf');
     }
 }

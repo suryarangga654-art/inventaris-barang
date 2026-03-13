@@ -85,6 +85,12 @@
              <a href="{{ route('barang.create')}}" class="btn btn-primary my-4">
                 <i class="bx bx-folder-plus"></i>Tambah Data
              </a>
+             <a href="{{ route('barang.export') }}" class="btn btn-success my-4">
+                     <i class="bx bx-file-export"></i> Export to Excel
+                    </a>
+                    <a href="{{ route('barang.export.pdf') }}" class="btn btn-danger my-4">
+                    <i class="bx bx-file-export"></i> Export to PDF
+                    </a>
               <!-- Basic Bootstrap Table -->
               <div class="card">
                 <h5 class="card-header">Data Barang</h5>

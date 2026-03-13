@@ -8,6 +8,8 @@ use App\Exports\BarangExport; // Untuk Export Excel
 use Maatwebsite\Excel\Facades\Excel; // Untuk Export Excel
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Exports\PeminjamExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarangPeminjamController extends Controller
 {
@@ -137,8 +139,15 @@ class BarangPeminjamController extends Controller
     }
 
     // Fungsi Export Excel agar tombol tidak "Not Found"
-    public function export()
-    {
-        return Excel::download(new BarangExport, 'data_peminjaman.xlsx');
-    }
+    public function exportExcel()
+{
+    return Excel::download(new PeminjamExport, 'laporan_peminjaman.xlsx');
+}
+
+public function exportPdf()
+{
+    $peminjam = BarangPeminjam::with('barang')->get();
+    $pdf = Pdf::loadView('barangpeminjam.pdf', compact('peminjam'));
+    return $pdf->download('laporan_peminjaman.pdf');
+}
 }

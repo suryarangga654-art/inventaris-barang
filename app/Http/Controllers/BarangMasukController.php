@@ -6,6 +6,9 @@ use App\Models\BarangMasuk;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\MasukExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarangMasukController extends Controller
 {
@@ -126,4 +129,15 @@ class BarangMasukController extends Controller
 
         return redirect()->route('barangmasuk.index')->with('success', 'Data berhasil dihapus');
     }
+    public function exportExcel()
+{
+    return Excel::download(new MasukExport, 'laporan_barang_masuk.xlsx');
+}
+
+public function exportPdf()
+{
+    $masuk = BarangMasuk::with('barang')->get();
+    $pdf = Pdf::loadView('barangmasuk.pdf', compact('masuk'));
+    return $pdf->download('laporan_barang_masuk.pdf');
+}
 }
